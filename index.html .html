@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VELOCITY — Décisions 48h + rapides. ROI x10.</title>
+  <meta name="description" content="Transformez 5 000 €/mois en +50 000 € de valeur business. Velocity livre une décision documentée 1 page en <24h (souvent 1h). Résiliable à tout moment." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0b0d12;--bg-soft:#0f1219;--text:#e8ecf3;--muted:#9aa4b2;--brand:#7dd3fc;--brand-strong:#38bdf8;--ok:#34d399;--card:#0f131b;--stroke:rgba(255,255,255,.08);--radius:20px;--shadow:0 20px 50px rgba(0,0,0,.35)}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial; background:radial-gradient(1200px 600px at 70% -10%, rgba(56,189,248,.08), transparent 60%),radial-gradient(900px 500px at 10% 0%, rgba(52,211,153,.06), transparent 60%),var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+    header{position:sticky;top:0;z-index:40;background:linear-gradient(to bottom, rgba(11,13,18,.9), rgba(11,13,18,.6));backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--stroke)}
+    .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.5px}
+    .logo{width:36px;height:36px;border-radius:10px;background:conic-gradient(from 200deg, var(--brand-strong), #22d3ee, #a7f3d0, var(--brand-strong));box-shadow:0 10px 30px rgba(56,189,248,.35)}
+    .brand span{font-family:Outfit,Inter,sans-serif;font-size:18px}
+    .nav a{margin:0 10px;color:var(--muted);font-weight:500}
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 18px;border-radius:14px;border:1px solid var(--stroke);background:#0e1219;color:var(--text);font-weight:600}
+    .btn:hover{border-color:rgba(125,211,252,.5);box-shadow:0 10px 30px rgba(56,189,248,.15)}
+    .btn.primary{background:linear-gradient(180deg,var(--brand),var(--brand-strong));color:#00121a;border:none}
+    .btn.primary:hover{filter:brightness(1.03);box-shadow:0 14px 40px rgba(56,189,248,.35)}
+
+    .hero{padding:80px 0 40px}
+    .headline{font-family:Outfit,Inter,sans-serif;font-weight:800;font-size:clamp(34px,6vw,64px);line-height:1.05;letter-spacing:-.02em}
+    .headline span{background:linear-gradient(90deg,var(--brand-strong),#a7f3d0);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .subhead{margin-top:16px;color:var(--muted);font-size:clamp(16px,2.2vw,20px);max-width:820px}
+    .cta-row{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid var(--stroke);font-size:12px;color:var(--muted)}
+
+    .stats{margin:40px 0;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .stat{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));border:1px solid var(--stroke);border-radius:var(--radius);padding:18px 20px}
+    .stat h4{margin:0;font-size:28px;font-weight:800;font-family:Outfit,Inter,sans-serif}
+    .stat p{margin:6px 0 0;color:var(--muted);font-size:14px}
+
+    section{padding:50px 0}
+    .grid{display:grid;gap:20px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.01));border:1px solid var(--stroke);border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    .muted{color:var(--muted)}
+
+    .one{display:grid;grid-template-columns:1.1fr .9fr;gap:22px}
+    .kpi{display:flex;gap:16px;margin-top:10px;flex-wrap:wrap}
+    .pill{padding:8px 12px;border-radius:12px;background:rgba(125,211,252,.08);border:1px solid rgba(125,211,252,.25);font-weight:600;font-size:14px}
+
+    .examples .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+    .why .grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+
+    .pricing{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+    .price{font-family:Outfit,Inter,sans-serif;font-size:42px;margin:12px 0}
+
+    .steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+    .step-num{width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(125,211,252,.15);border:1px solid rgba(125,211,252,.35);font-weight:700;color:#bff0ff}
+
+    footer{border-top:1px solid var(--stroke);color:var(--muted);padding:26px 0 60px}
+
+    @media (max-width:1024px){.one{grid-template-columns:1fr}.examples .grid{grid-template-columns:1fr 1fr}.why .grid{grid-template-columns:1fr 1fr}.pricing{grid-template-columns:1fr}.steps{grid-template-columns:1fr 1fr}.stats{grid-template-columns:1fr 1fr 1fr}}
+    @media (max-width:640px){.nav a{display:none}.stats{grid-template-columns:1fr}.examples .grid,.why .grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>VELOCITY</span>
+      </div>
+      <nav>
+        <a href="#prestation">Prestation</a>
+        <a href="#exemples">Exemples</a>
+        <a href="#pricing">Tarif</a>
+        <a href="#onboarding">Onboarding</a>
+        <a class="btn primary" href="#start" role="button">Démarrer</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <h1 class="headline">Transformez 5 000 €/mois en <span>+50 000 € de valeur business</span>.</h1>
+        <p class="subhead">Décisions <strong>48h plus rapides</strong> → deals closés plus vite → ROI visé <strong>x10</strong>. Velocity livre une décision documentée (1 page) en <strong>&lt;24h</strong> (souvent 1h). Résiliable à tout moment.</p>
+        <div class="cta-row">
+          <a id="start" class="btn primary" href="https://buy.stripe.com/your-link" target="_blank" rel="noopener">Démarrer maintenant</a>
+          <a class="btn" href="#exemples">Voir 3 décisions réelles (1 min)</a>
+        </div>
+        <div class="cta-row">
+          <span class="badge">SLA 95 % &lt; 1h (heures ouvrées)</span>
+          <span class="badge">Lecture &lt; 2 min</span>
+          <span class="badge">Canal Telegram privé</span>
+        </div>
+        <div class="stats container">
+          <div class="stat"><h4>1</h4><p>Seule prestation : <em>Question → Décision</em></p></div>
+          <div class="stat"><h4>&lt; 24 h</h4><p>Livraison garantie (souvent 1 h)</p></div>
+          <div class="stat"><h4>10×</h4><p>ROI visé par mois</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRESTATION UNIQUE -->
+    <section id="prestation">
+      <div class="container one">
+        <div class="card">
+          <h2 class="headline" style="font-size:32px">Une seule prestation.</h2>
+          <p class="muted">Vous posez une décision à fort impact (deal, recrutement, budget, roadmap). Vous recevez une <strong>page unique</strong> : TL;DR (3 lignes), 3 insights chiffrés, <strong>recommandation binaire</strong> (GO/NO‑GO/PRIORISER), <strong>Next Step</strong> exécutable &lt; 24h, et le <strong>coût de l’inaction</strong>.</p>
+          <div class="kpi">
+            <span class="pill">Lecture &lt; 2 min</span>
+            <span class="pill">Décision immédiate</span>
+            <span class="pill">Standardisé & répétable</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Pourquoi c’est court (et meilleur)</h3>
+          <ul class="muted" style="margin:10px 0 0 18px">
+            <li>Les dirigeants paient pour la <strong>clarté</strong>, pas des rapports.</li>
+            <li>Chaque jour gagné sur une décision = <strong>€ avancés</strong> sur le MRR.</li>
+            <li>La brièveté crée l’<strong>autorité</strong> et réduit la friction.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXEMPLES ROI -->
+    <section id="exemples" class="examples">
+      <div class="container">
+        <h2 class="headline" style="font-size:32px">Exemples chiffrés</h2>
+        <p class="muted">Anonymisés. Format 1 page. Décision ferme. ROI explicite.</p>
+        <div class="grid">
+          <div class="card">
+            <h4>CEO — Salon SaaS (30k€)</h4>
+            <p><strong>TL;DR :</strong> NO‑GO → salon = coût net ~–70k€, ROI &lt; 1</p>
+            <ul class="muted" style="margin:10px 0 0 18px">
+              <li>Leads qualifiés ~150 → 15 deals en pipe → CAC effectif ~2k€ vs digital 600€</li>
+              <li>Audience ≠ ICP (PME locales) → faible impact brand</li>
+            </ul>
+            <p><strong>Next Step :</strong> allouer 30k€ à Paid + SDR → ~45 deals → ~300k€ pipe/60j</p>
+            <p class="muted"><em>Coût de l’inaction :</em> 30k€ brûlés + ~250k€ d’opportunité perdue</p>
+          </div>
+          <div class="card">
+            <h4>COO — Head of Sales (180k€/an)</h4>
+            <p><strong>TL;DR :</strong> GO → +3M€ de pipe sur 12 mois</p>
+            <ul class="muted" style="margin:10px 0 0 18px">
+              <li>Ramp-up 3 mois → attendre 6 mois = 9 mois perdus</li>
+              <li>4 AE recrutés/formés → +2–3M€ ARR</li>
+            </ul>
+            <p><strong>Next Step :</strong> lancer offre et signer ce mois‑ci</p>
+            <p class="muted"><em>Coût de l’inaction :</em> ~2M€ ARR retardés</p>
+          </div>
+          <div class="card">
+            <h4>CFO — Commit cloud 1M€/an</h4>
+            <p><strong>TL;DR :</strong> GO → ~250k€ d’économies nettes / 12 mois</p>
+            <ul class="muted" style="margin:10px 0 0 18px">
+              <li>Run‑rate 1,08M€ → remise –25 % = –270k€</li>
+              <li>Même +10 % conso → gain net ~250k€ → +1,5 pts de marge</li>
+            </ul>
+            <p><strong>Next Step :</strong> signer commit avec clause d’escalade cette semaine</p>
+            <p class="muted"><em>Coût de l’inaction :</em> 250k€ perdus/12 mois</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING & POSTURE -->
+    <section id="pricing">
+      <div class="container">
+        <h2 class="headline" style="font-size:32px">Tarif & posture</h2>
+        <div class="pricing">
+          <div class="card">
+            <div class="badge">Abonnement mensuel</div>
+            <div class="price">5 000 € / mois</div>
+            <ul class="muted" style="list-style:none;padding:0;margin:0">
+              <li style="margin:8px 0">2 demandes / jour (heures ouvrées)</li>
+              <li style="margin:8px 0">95 % des livrables &lt; 1 h</li>
+              <li style="margin:8px 0">Résiliation à tout moment</li>
+              <li style="margin:8px 0">Canal Telegram privé</li>
+            </ul>
+            <div class="cta-row" style="margin-top:16px">
+              <a class="btn primary" href="https://buy.stripe.com/your-link" target="_blank" rel="noopener">Démarrer maintenant</a>
+              <a class="btn" href="#onboarding">Voir l’onboarding</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="badge">Objectif de valeur</div>
+            <p class="muted">Minimum <strong>50 000 € de valeur</strong> créée / mois pour 5 000 € investis. Si l’équation n’est pas là, vous arrêtez. Notre posture = <em>no‑brainer</em>.</p>
+          </div>
+          <div class="card">
+            <div class="badge">SLA & qualité</div>
+            <p class="muted">Si un livrable dépasse 24 h, la demande est offerte. Zéro réunion inutile. Zéro fluff. Juste des décisions plus rapides.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ONBOARDING -->
+    <section id="onboarding">
+      <div class="container">
+        <h2 class="headline" style="font-size:32px">Onboarding en 4 étapes</h2>
+        <div class="steps">
+          <div class="card"><div class="step-num">1</div><h3>Qualification (15 min)</h3><p class="muted">Cible, usage, priorité. Go/No‑Go immédiat.</p></div>
+          <div class="card"><div class="step-num">2</div><h3>Paiement Stripe</h3><p class="muted">Lien sécurisé. Facture instantanée.</p></div>
+          <div class="card"><div class="step-num">3</div><h3>Canal Telegram</h3><p class="muted">Ouverture &lt; 24 h. Format & consignes partagés.</p></div>
+          <div class="card"><div class="step-num">4</div><h3>Premier livrable</h3><p class="muted">Le jour même. Décision documentée.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ courte -->
+    <section>
+      <div class="container">
+        <h2 class="headline" style="font-size:32px">FAQ</h2>
+        <div class="grid" style="grid-template-columns:1fr 1fr">
+          <div class="card"><h3>Qu’est‑ce qui est inclus ?</h3><p class="muted">Toute décision à fort impact (deal, recrutement, budget, roadmap, fournisseur). Vous posez la question, on renvoie une décision 1 page.</p></div>
+          <div class="card"><h3>Et la confidentialité ?</h3><p class="muted">Canal privé, données minimales, exemples publiés uniquement avec accord, et toujours anonymisés.</p></div>
+          <div class="card"><h3>Pourquoi si court ?</h3><p class="muted">Les dirigeants paient pour la clarté. 1 page = décision en 5 minutes, pas en 5 réunions.</p></div>
+          <div class="card"><h3>Et si le ROI n’est pas là ?</h3><p class="muted">Vous arrêtez. Sans engagement. Notre objectif = 10× la valeur vs coût.</p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap">
+      <div>© <span id="y"></span> VELOCITY. Tous droits réservés.</div>
+      <div style="display:flex;gap:12px;align-items:center">
+        <a class="btn" href="https://t.me/your-handle" target="_blank" rel="noopener">Nous écrire sur Telegram</a>
+        <a class="btn" href="#prestation">Revoir la promesse</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
