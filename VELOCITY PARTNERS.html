@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Velocity — Chief of Staff instantané pour dirigeants</title>
+  <meta name="description" content="Abonnement Velocity : votre Chief of Staff digital, sur Telegram. Jusqu’à 2 demandes/jour. 5 000 € / mois. Annulable à tout moment." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Headline: "Clash Display" fallback to "Poppins"; Body: "Inter" -->
+  <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#0b0d12;
+      --bg-soft:#10131b;
+      --card:#0f1420;
+      --muted:#9aa3b2;
+      --text:#e6ebf3;
+      --primary:#5cf0d6;
+      --primary-ink:#0b2b27;
+      --accent:#6ea8fe;
+      --danger:#ff7a7a;
+      --ring: 0 0 0 8px color-mix(in oklab, var(--primary) 20%, transparent);
+      --radius: 16px;
+      --shadow:
+        0 1px 0 rgba(255,255,255,0.03) inset,
+        0 12px 40px rgba(0,0,0,.45),
+        0 8px 24px rgba(92,240,214,.08);
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f7f9fc;
+        --bg-soft:#eef3fb;
+        --card:#ffffff;
+        --text:#0b1220;
+        --muted:#5b677a;
+        --primary:#00c2a8;
+        --primary-ink:#e9fffb;
+        --accent:#2b6ef3;
+        --shadow:
+          0 1px 0 rgba(0,0,0,0.04) inset,
+          0 12px 40px rgba(23,36,56,.08),
+          0 8px 24px rgba(0,194,168,.10);
+      }
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 80% -10%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 60%),
+        radial-gradient(1200px 700px at -10% 10%, color-mix(in oklab, var(--primary) 12%, transparent), transparent 60%),
+        var(--bg);
+      line-height:1.55;
+    }
+    .container{width:min(1120px, 92vw); margin-inline:auto}
+    .navbar{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:20px 0;
+    }
+    .brand{display:flex; align-items:center; gap:.75rem; text-decoration:none; color:var(--text)}
+    .brand .logo{
+      width:40px; height:40px; border-radius:10px;
+      background: linear-gradient(135deg, var(--primary), color-mix(in oklab, var(--accent) 55%, var(--primary)));
+      box-shadow: 0 10px 30px rgba(92,240,214,.35), inset 0 0 24px rgba(255,255,255,.18);
+      position:relative; display:grid; place-items:center;
+    }
+    .brand .logo svg{width:22px; height:22px; color:#071a17}
+    .brand span{font-family:"Clash Display", ui-serif, "Poppins", sans-serif; font-size:1.125rem; letter-spacing:.2px}
+    .nav-cta{
+      display:flex; gap:.6rem; align-items:center;
+    }
+    .btn{
+      --bg-btn:var(--primary);
+      background:var(--bg-btn);
+      color:#06221e;
+      padding:.85rem 1.15rem;
+      border-radius:12px;
+      border:1px solid color-mix(in oklab, var(--primary) 35%, #0000);
+      box-shadow: var(--shadow);
+      font-weight:600;
+      text-decoration:none;
+      display:inline-flex; gap:.6rem; align-items:center;
+      transition: transform .06s ease, box-shadow .2s ease, background .2s ease, filter .2s ease;
+      will-change: transform;
+    }
+    .btn:hover{ transform: translateY(-2px); filter: saturate(1.05)}
+    .btn:active{ transform: translateY(0)}
+    .btn.secondary{
+      --bg-btn:color-mix(in oklab, var(--bg-soft) 70%, #fff);
+      color:var(--text);
+      border:1px solid color-mix(in oklab, var(--muted) 24%, #0000);
+      box-shadow: 0 4px 16px rgba(0,0,0,.18);
+    }
+
+    /* Hero */
+    .hero{padding: clamp(40px, 8vw, 96px) 0 36px}
+    .eyebrow{
+      display:inline-flex; gap:.5rem; align-items:center;
+      color:var(--muted); font-weight:600; font-size:.9rem;
+      background: color-mix(in oklab, var(--card) 70%, transparent);
+      border:1px solid color-mix(in oklab, var(--muted) 20%, transparent);
+      padding:.45rem .75rem; border-radius:999px;
+    }
+    .eyebrow svg{width:16px; height:16px}
+    h1{
+      font-family:"Clash Display", ui-serif, "Poppins", sans-serif;
+      font-size: clamp(2.2rem, 3.8vw + 1rem, 4rem);
+      line-height:1.06; letter-spacing:-0.02em; margin:18px 0 12px;
+    }
+    .sub{
+      font-size: clamp(1rem, .5vw + .9rem, 1.25rem);
+      color:var(--muted);
+      max-width: 780px;
+    }
+    .hero-card{
+      margin-top:28px; display:grid; grid-template-columns: 1.2fr .8fr; gap:18px;
+    }
+    @media (max-width: 880px){
+      .hero-card{ grid-template-columns: 1fr; }
+    }
+    .card{
+      background: linear-gradient(180deg, color-mix(in oklab, var(--card) 80%, transparent), color-mix(in oklab, var(--card) 96%, transparent));
+      border:1px solid color-mix(in oklab, var(--muted) 18%, transparent);
+      border-radius: var(--radius);
+      padding: clamp(18px, 2.4vw, 28px);
+      box-shadow: var(--shadow);
+    }
+    .price{
+      display:flex; align-items:end; gap:.5rem; margin: 2px 0 6px;
+    }
+    .price .amount{ font-size: clamp(2.2rem, 2.6vw + 1rem, 3rem); font-weight:800; letter-spacing:-0.02em}
+    .price .per{ color:var(--muted); font-weight:600}
+    .badges{ display:flex; gap:.5rem; flex-wrap:wrap; margin:14px 0 8px}
+    .badge{
+      display:inline-flex; align-items:center; gap:.45rem;
+      padding:.45rem .7rem; border-radius:999px;
+      background: color-mix(in oklab, var(--bg-soft) 78%, transparent);
+      border:1px solid color-mix(in oklab, var(--muted) 18%, #0000);
+      color:var(--text); font-weight:600; font-size:.9rem;
+    }
+    .badge svg{width:16px; height:16px}
+    .cta-row{ display:flex; gap:.7rem; flex-wrap:wrap; margin-top:14px}
+    .note{ color:var(--muted); font-size:.92rem; margin-top:10px}
+
+    /* Steps */
+    .section{ padding: 56px 0}
+    .section h2{
+      font-family:"Clash Display", ui-serif, "Poppins", sans-serif;
+      font-size: clamp(1.6rem, 1.6vw + 1rem, 2.2rem);
+      letter-spacing:-.01em; margin:0 0 14px;
+    }
+    .grid-3{
+      display:grid; grid-template-columns: repeat(3,1fr); gap:16px;
+    }
+    @media (max-width: 880px){ .grid-3{ grid-template-columns: 1fr } }
+    .step{ position:relative; overflow:hidden}
+    .step .n{
+      width:32px; height:32px; border-radius:9px; display:grid; place-items:center;
+      background: var(--primary); color:#06221e; font-weight:800; margin-bottom:12px;
+      box-shadow: 0 6px 20px rgba(92,240,214,.35);
+    }
+    .step p{ color:var(--muted); margin:.4rem 0 0}
+
+    /* Value */
+    .tiles{ display:grid; grid-template-columns: repeat(3,1fr); gap:16px}
+    @media (max-width: 1000px){ .tiles{ grid-template-columns: 1fr 1fr } }
+    @media (max-width: 640px){ .tiles{ grid-template-columns: 1fr } }
+    .tile{
+      padding:22px; border-radius:14px;
+      background: color-mix(in oklab, var(--card) 92%, transparent);
+      border:1px solid color-mix(in oklab, var(--muted) 18%, transparent);
+      display:flex; gap:14px; align-items:flex-start;
+    }
+    .tile svg{ width:22px; height:22px; color:var(--primary)}
+    .tile h3{ margin:.2rem 0; font-size:1.05rem }
+    .tile p{ margin:.2rem 0 0; color:var(--muted) }
+
+    /* FAQ */
+    details{
+      background: color-mix(in oklab, var(--card) 90%, transparent);
+      border:1px solid color-mix(in oklab, var(--muted) 18%, transparent);
+      border-radius:12px; padding:14px 16px; margin:10px 0;
+    }
+    summary{
+      cursor:pointer; list-style:none; display:flex; align-items:center;
+      gap:.6rem; font-weight:700;
+    }
+    summary::marker{ display:none }
+    details[open]{ box-shadow: 0 0 0 0 rgba(0,0,0,0), var(--shadow)}
+    .faq p{ color:var(--muted); margin:.6rem 0 0 }
+
+    /* Footer */
+    .footer{ padding:26px 0 48px; color:var(--muted); font-size:.92rem }
+    .footer a{ color:inherit; text-decoration:none; border-bottom:1px dashed color-mix(in oklab, var(--muted) 40%, transparent) }
+    .shield{
+      display:inline-flex; align-items:center; gap:.45rem; padding:.4rem .6rem;
+      border-radius:10px; background: color-mix(in oklab, var(--bg-soft) 80%, transparent);
+      border:1px solid color-mix(in oklab, var(--muted) 18%, transparent);
+    }
+
+    /* Utility */
+    .mono{ font-variant-numeric: tabular-nums; font-feature-settings:"tnum" 1 }
+    .hide-mobile{ display:inline-flex }
+    @media (max-width:640px){ .hide-mobile{ display:none } }
+  </style>
+</head>
+<body>
+  <header class="container navbar" aria-label="Navigation principale">
+    <a class="brand" href="#top">
+      <span class="logo" aria-hidden="true">
+        <!-- V monogram -->
+        <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-label="Logo">
+          <path d="M5 5h4.5l2.5 8.5L14.5 5H19l-7 16h-0.9L5 5z"/>
+        </svg>
+      </span>
+      <span>Velocity</span>
+    </a>
+    <nav class="nav-cta">
+      <a href="#pricing" class="btn secondary">Tarifs</a>
+      <a href="#cta" class="btn" aria-label="S'abonner à Velocity maintenant">
+        <!-- Bolt -->
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M13 3L4 14h6l-1 7 9-11h-6l1-7z"></path>
+        </svg>
+        S’abonner
+      </a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero container">
+      <span class="eyebrow">
+        <!-- Sparkles -->
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 3l1.5 3L13 7.5 9.5 9 8 12l-1.5-3L3 7.5 6.5 6 8 3zm10 2l1 2 2 1-2 1-1 2-1-2-2-1 2-1 1-2zM16 13l1.2 2.3 2.3 1.2-2.3 1.2L16 20l-1.2-2.3-2.3-1.2 2.3-1.2L16 13z"/></svg>
+        Chief of Staff digital instantané
+      </span>
+      <h1>Décidez plus vite. Exécutez plus fort.</h1>
+      <p class="sub">Velocity est votre Chief of Staff à la demande : un canal Telegram privé pour avancer sans friction. Vous envoyez vos demandes, nous livrons—avec rigueur, clarté et sens du ROI.</p>
+
+      <div class="hero-card">
+        <div class="card">
+          <div class="price">
+            <span class="amount mono">5 000 €</span>
+            <span class="per">/ mois</span>
+          </div>
+          <div class="badges" role="list">
+            <span class="badge" role="listitem">
+              <!-- Telegram -->
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.04 16.29l-.38 5.06c.54 0 .77-.23 1.05-.51l2.52-2.4 5.23 3.83c.96.53 1.65.25 1.9-.89l3.44-16.12.01-.01c.31-1.45-.52-2.02-1.46-1.66L1.79 9.62c-1.41.55-1.39 1.34-.24 1.7l5.94 1.86 13.76-8.7c.64-.42 1.22-.19.74.23L9.04 16.29z"/></svg>
+              Canal Telegram privé
+            </span>
+            <span class="badge" role="listitem">
+              <!-- Check -->
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 16.2l-3.5-3.5L4 14.2 9 19l12-12-1.5-1.5z"/></svg>
+              2 demandes / jour
+            </span>
+            <span class="badge" role="listitem">
+              <!-- Loop -->
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 7h10v3l4-4-4-4v3H6a5 5 0 0 0 0 10h3v-2H6a3 3 0 1 1 0-6zm11 10H8v-3l-4 4 4 4v-3h11a5 5 0 1 0 0-10h-3v2h3a3 3 0 1 1 0 6z"/></svg>
+              Annulable à tout moment
+            </span>
+          </div>
+
+          <div class="cta-row" id="cta">
+            <!-- TODO: Remplacez l’URL par votre lien d’achat ou Telegram -->
+            <a class="btn" href="https://t.me/your_telegram_handle" target="_blank" rel="noopener">
+              Rejoindre sur Telegram
+            </a>
+            <a class="btn secondary" href="#how">Voir comment ça marche</a>
+          </div>
+          <p class="note">Facturation mensuelle. Sans engagement. Idéal pour CEO, fondateurs, investisseurs et dirigeants orientés exécution.</p>
+        </div>
+
+        <div class="card" id="pricing" aria-labelledby="pack">
+          <h2 id="pack" style="margin:0 0 12px">Pack Velocity</h2>
+          <ul style="margin:0; padding:0 0 0 1.1rem; line-height:1.8">
+            <li>Réponses structurées (brief, décision, SOP, deck, email)</li>
+            <li>Sorties prêtes à envoyer (PDF/HTML/texte)</li>
+            <li>Suivi des actions & rappels dans Telegram</li>
+            <li>Confidentialité & canal dédié pour votre équipe</li>
+          </ul>
+          <div style="margin-top:16px; display:flex; gap:.6rem; flex-wrap:wrap">
+            <span class="shield" aria-label="SLA indicatif">
+              <!-- Clock -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1a11 11 0 1 0 11 11A11.013 11.013 0 0 0 12 1Zm1 11.59V6h-2v7h6v-2Z"/></svg>
+              SLA rapide
+            </span>
+            <span class="shield">
+              <!-- Lock -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17 8V7a5 5 0 1 0-10 0v1H5v14h14V8h-2Zm-8 0V7a3 3 0 1 1 6 0v1H9Zm3 5a2 2 0 1 1-2 2 2 2 0 0 1 2-2Z"/></svg>
+              Données protégées
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="section container">
+      <h2>Comment ça marche</h2>
+      <div class="grid-3">
+        <div class="step card">
+          <div class="n">1</div>
+          <h3>Vous envoyez</h3>
+          <p>Brief rapide sur Telegram (ex : “/decision — choisir entre A et B, budget 20 k”).</p>
+        </div>
+        <div class="step card">
+          <div class="n">2</div>
+          <h3>On traite & structure</h3>
+          <p>Analyse ROI, synthèse claire et livrable actionnable (brief, memo, deck, SOP, email…).</p>
+        </div>
+        <div class="step card">
+          <div class="n">3</div>
+          <h3>Vous décidez & exécutez</h3>
+          <p>On propose l’option unique recommandée + next steps concrets. Sans aller-retour inutiles.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VALUE -->
+    <section class="section container">
+      <h2>Ce que vous obtenez concrètement</h2>
+      <div class="tiles">
+        <div class="tile">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.2L18 21l-6-4-6 4 1.5-7.8L2 9h7l3-7z"/></svg>
+          <div><h3>Décisions plus rapides</h3><p>SPADE compact + recommandation unique. Zéro “ça dépend”.</p></div>
+        </div>
+        <div class="tile">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3H3v18h18V3zm-2 2v4H5V5h14zM5 19v-8h14v8H5z"/></svg>
+          <div><h3>Livrables prêts à envoyer</h3><p>Emails, decks, SOPs et notes stratégiques au format pro.</p></div>
+        </div>
+        <div class="tile">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4a8 8 0 1 0 8 8h-2a6 6 0 1 1-6-6V4z"/></svg>
+          <div><h3>Temps gagné</h3><p>Externalisez l’analyse et la rédaction pour vous concentrer sur l’essentiel.</p></div>
+        </div>
+        <div class="tile">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 11h18v2H3z"/></svg>
+          <div><h3>Clarté radicale</h3><p>Formats standardisés avec next actions, propriétaires et deadlines.</p></div>
+        </div>
+        <div class="tile">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3 19.5V14H6l6-6 6 6h-3v7.5A10 10 0 0 0 12 2z"/></svg>
+          <div><h3>Montée en puissance</h3><p>Cadres et SOPs réutilisables pour votre équipe.</p></div>
+        </div>
+        <div class="tile">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v16H4zM7 7h10v2H7zm0 4h10v2H7zm0 4h7v2H7z"/></svg>
+          <div><h3>Traçabilité</h3><p>Historique des demandes & décisions directement dans Telegram.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section container faq">
+      <h2>FAQ</h2>
+      <details>
+        <summary>Quel est le périmètre exact de l’abonnement ?</summary>
+        <p>Jusqu’à <strong>2 demandes par jour ouvré</strong>, via votre canal Telegram. Chaque demande = un sujet (ex: décision, brief, SOP, deck, email critique…).</p>
+      </details>
+      <details>
+        <summary>Comment se passe la facturation ?</summary>
+        <p>Abonnement mensuel à <strong>5 000 € HT</strong>. Renouvelé automatiquement, <strong>annulable à tout moment</strong> depuis le même canal.</p>
+      </details>
+      <details>
+        <summary>Et si j’ai besoin de plus de 2 demandes/jour ?</summary>
+        <p>On met en file d’attente ou on propose un <em>add-on</em> ponctuel si le volume devient structurel.</p>
+      </details>
+      <details>
+        <summary>La confidentialité est-elle garantie ?</summary>
+        <p>Oui. Canal privé, accès restreint, meilleures pratiques de sécurité opérationnelle. NDA sur demande.</p>
+      </details>
+      <details>
+        <summary>Puis-je arrêter quand je veux ?</summary>
+        <p>Oui, l’abonnement est <strong>sans engagement</strong>. Vous pouvez annuler à tout moment avant la prochaine échéance.</p>
+      </details>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section container">
+      <div class="card" style="display:flex; flex-wrap:wrap; align-items:center; gap:16px; justify-content:space-between">
+        <div>
+          <h2 style="margin:.2rem 0 .2rem">Prêt à accélérer ?</h2>
+          <p class="sub" style="margin:0">Rejoignez Velocity aujourd’hui. Un seul canal, des sorties prêtes à exécuter, et des décisions prises plus vite.</p>
+        </div>
+        <a class="btn" href="https://t.me/your_telegram_handle" target="_blank" rel="noopener">Démarrer sur Telegram</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer container">
+    <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between">
+      <span>© <span class="mono" id="year"></span> Velocity — Tous droits réservés.</span>
+      <span class="hide-mobile">•</span>
+      <span>Contact : <a href="mailto:hello@velocity.co">hello@velocity.co</a></span>
+      <span class="hide-mobile">•</span>
+      <span><a href="#">Mentions légales</a> · <a href="#">CGV</a> · <a href="#">Confidentialité</a></span>
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Smooth scroll for in-page anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}) }
+      });
+    });
+  </script>
+
+  <!-- JSON-LD (organisation & product minimal) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Product",
+    "name":"Abonnement Velocity",
+    "description":"Chief of Staff digital sur Telegram. Jusqu’à 2 demandes/jour. Annulable à tout moment.",
+    "brand":{"@type":"Brand","name":"Velocity"},
+    "offers":{
+      "@type":"Offer",
+      "priceCurrency":"EUR",
+      "price":"5000",
+      "availability":"https://schema.org/InStock"
+    }
+  }
+  </script>
+</body>
+</html>
