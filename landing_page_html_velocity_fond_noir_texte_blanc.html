@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VELOCITY — Réponses business express</title>
+  <meta name="description" content="Posez une question business. Payez 1000 €. Recevez la réponse en 2 minutes sur un canal Telegram privé." />
+  <style>
+    :root {
+      --bg: #000;
+      --text: #fff;
+      --muted: #c7c7c7;
+      --card: #0b0b0b;
+      --border: #222;
+    }
+    /* Reset minimal */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      line-height: 1.5;
+      letter-spacing: 0.2px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .wrap {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 6rem 1.25rem 4rem;
+      display: grid;
+      gap: 2rem;
+    }
+    header h1 { font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 0.5rem; }
+    header p { margin: 0; color: var(--muted); font-size: clamp(1rem, 1.6vw, 1.125rem); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 1.25rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 800px) {
+      .grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .eyebrow { text-transform: uppercase; letter-spacing: 0.12em; font-size: 0.8rem; color: var(--muted); }
+    .kpi { font-size: clamp(1.2rem, 2.4vw, 1.6rem); margin: 0.25rem 0 0; }
+
+    .section-title { font-size: 1.1rem; margin: 0 0 0.75rem; }
+    .list { margin: 0; padding-left: 1rem; }
+    .list li { margin: 0.3rem 0; }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.95rem 1.25rem;
+      border-radius: 999px;
+      color: var(--text);
+      border: 1px solid var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform .08s ease, background .2s ease, color .2s ease;
+    }
+    .cta:hover { background: var(--text); color: var(--bg); transform: translateY(-1px); }
+    .cta:active { transform: translateY(0); opacity: .9; }
+
+    .note { color: var(--muted); font-size: 0.9rem; }
+    footer { border-top: 1px solid var(--border); margin-top: 2rem; padding-top: 1rem; color: var(--muted); font-size: 0.85rem; }
+
+    /* Simple check icons using CSS */
+    .check { position: relative; padding-left: 1.6rem; }
+    .check::before {
+      content: '';
+      position: absolute; left: 0; top: 0.35rem;
+      width: 1rem; height: 1rem; border: 1px solid var(--text); border-radius: 4px;
+      background: transparent;
+    }
+    .check::after {
+      content: '';
+      position: absolute; left: 0.22rem; top: 0.46rem;
+      width: 0.55rem; height: 0.35rem; border-left: 2px solid var(--text); border-bottom: 2px solid var(--text);
+      transform: rotate(-45deg);
+    }
+
+    .pill { display:inline-block; border:1px solid var(--border); border-radius:999px; padding:.25rem .6rem; color:var(--muted); font-size:.85rem; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div class="pill">VELOCITY</div>
+      <h1>Réponses business. 2 minutes chrono.</h1>
+      <p>Posez votre question stratégique. Payez <strong>1000&nbsp;€</strong>. Recevez la réponse sur un <strong>canal Telegram privé</strong> <em>2 minutes</em> après le paiement.</p>
+    </header>
+
+    <section class="grid">
+      <!-- Structure demandée -->
+      <article class="card">
+        <div class="eyebrow">1. Décision / Go‑No Go</div>
+        <p class="kpi">Go → Oui, achetez une réponse maintenant.</p>
+      </article>
+
+      <article class="card">
+        <div class="eyebrow">2. Raisonnement clé</div>
+        <p class="kpi">Vitesse = avantage. Une décision prise dans 2 minutes vaut plus qu’un document reçu dans 2 semaines.</p>
+      </article>
+
+      <article class="card">
+        <div class="eyebrow">3. Conséquence</div>
+        <p class="kpi">Vous gagnez du temps, évitez l’hésitation coûteuse et passez à l’exécution dès maintenant.</p>
+      </article>
+
+      <article class="card">
+        <div class="section">
+          <h3 class="section-title">Comment ça marche</h3>
+          <ul class="list">
+            <li class="check">Vous payez <strong>1000&nbsp;€</strong> pour une question.</li>
+            <li class="check">Après paiement, vous envoyez votre question (une seule) et le contexte utile.</li>
+            <li class="check">La réponse arrive <strong>dans les 2 minutes</strong> sur votre <strong>canal Telegram privé</strong>.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="card" aria-labelledby="cta-title">
+      <h3 id="cta-title" class="section-title">Passer à l’action</h3>
+      <p style="margin:0 0 1rem">Prêt à décider plus vite&nbsp;?</p>
+      <a class="cta" href="https://buy.stripe.com/14A5kCcsl9P7dj13TRcAo06" target="_blank" rel="noopener">Poser ma question — 1000&nbsp;€</a>
+      <p class="note" style="margin-top:0.75rem">L’accès au canal Telegram privé est communiqué immédiatement après le paiement.</p>
+    </section>
+
+    <footer>
+      <p>© <span id="y"></span> VELOCITY — Réponses business express. Tous droits réservés.</p>
+    </footer>
+  </main>
+
+  <script>
+    // année dynamique
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
