@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>STRATX™ — Décisions stratégiques en &lt; 2 minutes</title>
+  <meta name="description" content="STRATX™ — Boardroom en temps réel. Décisions stratégiques en moins de 2 minutes." />
+  <style>
+    :root {
+      --bg: #0a0a0a;     /* Dark */
+      --fg: #f7f7f7;
+      --muted: #b3b3b3;
+      --card: #111;
+      --line: #1f1f1f;
+      --accent: #10b981; /* Emerald */
+      --accent-2: #60a5fa; /* Soft blue */
+    }
+    .light {
+      --bg: #ffffff;     /* Light */
+      --fg: #111111;
+      --muted: #666666;
+      --card: #f7f7f7;
+      --line: #eaeaea;
+      --accent: #0ebfa8;
+      --accent-2: #2563eb;
+    }
+
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      background: var(--bg); color: var(--fg); line-height: 1.4;
+      -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Layout */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    section { min-height: 100svh; display: grid; place-items: center; position: relative; padding: 64px 0; }
+    .center { text-align: center; }
+    .muted { color: var(--muted); }
+    .sep { height: 1px; background: var(--line); margin: 32px 0; }
+    .badge { display: inline-block; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--line); font-weight: 600; letter-spacing: .02em; }
+    .ok { color: #22c55e; border-color: #22c55e20; background: #22c55e10; }
+    .flag { border: 1px solid var(--line); padding: 10px 14px; border-radius: 12px; }
+    .accent { color: var(--accent); }
+
+    h1 { font-size: clamp(40px, 6vw, 84px); letter-spacing: -0.02em; margin: 0 0 12px; }
+    h2 { font-size: clamp(28px, 4vw, 48px); letter-spacing: -0.02em; margin: 0 0 16px; }
+    h3 { font-size: clamp(18px, 2.5vw, 22px); margin: 0 0 10px; }
+    p { margin: 0; font-size: clamp(16px, 1.5vw, 18px); }
+
+    /* PAGE 1 — Cover */
+    .cover { }
+    .cover .logo { font-weight: 800; font-size: clamp(48px, 8vw, 120px); letter-spacing: -0.04em; }
+    .cover .tagline { position: absolute; bottom: 40px; left: 0; right: 0; text-align: center; color: var(--muted); font-size: clamp(14px, 1.4vw, 18px); }
+
+    /* PAGE 2 — Problem */
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; margin-top: 28px; }
+    .kpi { border: 1px solid var(--line); background: var(--card); padding: 20px; border-radius: 16px; }
+    .kpi .icon { font-size: 22px; margin-bottom: 8px; }
+
+    /* PAGE 3 — Solution */
+    .steps { display: grid; gap: 14px; margin-top: 18px; }
+    .step { display: grid; grid-template-columns: 56px 1fr; gap: 16px; align-items: start; padding: 18px; border: 1px solid var(--line); background: var(--card); border-radius: 16px; }
+    .step .num { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); font-weight: 700; }
+
+    /* PAGE 4 — Results */
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; margin-top: 20px; }
+    .card { border: 1px solid var(--line); background: var(--card); padding: 20px; border-radius: 18px; display: grid; gap: 12px; }
+    .impact { border-left: 3px solid var(--accent); padding-left: 12px; color: var(--fg); }
+
+    /* PAGE 5 — CTA */
+    .cta { display: grid; gap: 18px; justify-items: center; text-align: center; }
+    .price { font-size: clamp(28px, 4vw, 44px); font-weight: 800; letter-spacing: -0.02em; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 26px; border-radius: 14px; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(0,0,0,.06)); color: var(--fg); text-decoration: none; font-weight: 700; }
+    .btn:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+
+    .qrwrap { display: grid; grid-template-columns: 1fr; gap: 10px; align-items: center; }
+    .qr { width: 140px; height: 140px; border: 10px solid var(--bg); outline: 1px solid var(--line); border-radius: 12px; background:
+      linear-gradient(90deg, var(--bg) 8px, transparent 8px) 0 0/28px 28px,
+      linear-gradient(0deg, var(--bg) 8px, transparent 8px) 0 0/28px 28px,
+      radial-gradient(circle at 14px 14px, var(--fg) 5px, transparent 6px);
+      /* Stylized placeholder. Replace with a real QR if souhaité. */
+    }
+
+    /* Utilities */
+    .topbar { position: fixed; top: 14px; right: 14px; z-index: 20; display: flex; gap: 10px; }
+    .ghost { background: transparent; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; cursor: pointer; }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .grid-3, .cards { grid-template-columns: 1fr; }
+      .step { grid-template-columns: 44px 1fr; }
+    }
+
+    /* Print to PDF (chaque section = page) */
+    @media print {
+      body { background: #fff; color: #000; }
+      .topbar { display: none; }
+      section { page-break-after: always; min-height: 100vh; }
+      .card, .kpi, .step { background: #fff; border-color: #ccc; }
+    }
+  </style>
+</head>
+<body>
+  <!-- UI -->
+  <div class="topbar">
+    <button class="ghost" id="toggleTheme" aria-label="Basculer thème">☾/☀︎</button>
+    <button class="ghost" onclick="window.print()" aria-label="Imprimer/PDF">Imprimer</button>
+  </div>
+
+  <!-- PAGE 1 — Couverture -->
+  <section class="cover">
+    <div class="container center">
+      <div class="logo">STRATX™</div>
+      <h1>Décisions stratégiques en moins de 2 minutes</h1>
+      <div class="tagline">📈 Chaque décision validée → +1M€ potentiel sur votre P&amp;L</div>
+    </div>
+  </section>
+
+  <!-- PAGE 2 — Le Problème -->
+  <section>
+    <div class="container">
+      <h2 class="center">Le Problème</h2>
+      <p class="center muted">Chaque minute sans décision vous coûte :</p>
+      <div class="grid-3">
+        <div class="kpi center">
+          <div class="icon">⏳</div>
+          <h3>CA</h3>
+          <p class="muted">Deals qui n’avancent pas</p>
+        </div>
+        <div class="kpi center">
+          <div class="icon">💸</div>
+          <h3>Marge</h3>
+          <p class="muted">Coûts qui explosent</p>
+        </div>
+        <div class="kpi center">
+          <div class="icon">🧠</div>
+          <h3>Énergie</h3>
+          <p class="muted">Équipes bloquées</p>
+        </div>
+      </div>
+
+      <div class="sep"></div>
+      <div style="max-width: 860px; margin: 0 auto;">
+        <p>Votre board est saturé.</p>
+        <p>Vos dirigeants passent des jours sur des arbitrages critiques.</p>
+        <p>Vous perdez du temps, vous perdez de l’argent.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 3 — La Solution -->
+  <section>
+    <div class="container">
+      <h2 class="center">La Solution</h2>
+      <p class="center muted"><strong>STRATX™</strong> = votre boardroom en temps réel.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="num">1️⃣</div>
+          <div>
+            <h3>Vous posez votre question</h3>
+            <p class="muted">Canal privé STRATX (Telegram sécurisé)</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">2️⃣</div>
+          <div>
+            <h3>Vous validez le paiement</h3>
+            <p class="muted">1&nbsp;000&nbsp;€ / question</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">3️⃣</div>
+          <div>
+            <h3>Vous recevez la décision</h3>
+            <p class="muted">&lt; 2 minutes, prête à exécuter</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 4 — Résultats Concrets -->
+  <section>
+    <div class="container">
+      <h2 class="center">Résultats Concrets</h2>
+      <div class="cards">
+        <!-- Cas B2B – SaaS -->
+        <div class="card">
+          <div class="badge">Cas B2B — SaaS</div>
+          <div>
+            <p class="muted">Question :</p>
+            <p>Recruter 2 commerciaux seniors dès ce trimestre ?</p>
+          </div>
+          <div>
+            <p class="muted">Décision :</p>
+            <div class="badge ok">✅ Go</div>
+          </div>
+          <div class="impact">
+            <strong>Impact :</strong> +30&nbsp;% de signatures → ROI positif en &lt; 60 jours
+          </div>
+        </div>
+
+        <!-- Cas B2C – E-commerce -->
+        <div class="card">
+          <div class="badge">Cas B2C — E-commerce</div>
+          <div>
+            <p class="muted">Question :</p>
+            <p>Refonte du site avant Noël (20k€) ?</p>
+          </div>
+          <div>
+            <p class="muted">Décision :</p>
+            <div class="badge ok">✅ Go</div>
+          </div>
+          <div class="impact">
+            <strong>Impact :</strong> +20&nbsp;% de conversions → CAC réduit et marge protégée
+          </div>
+        </div>
+
+        <!-- Cas Stratégique – Expansion -->
+        <div class="card">
+          <div class="badge">Cas Stratégique — Expansion</div>
+          <div>
+            <p class="muted">Question :</p>
+            <p>Espagne ou Allemagne en 2026 ?</p>
+          </div>
+          <div>
+            <p class="muted">Décision :</p>
+            <div class="badge">🇪🇸 Espagne</div>
+          </div>
+          <div class="impact">
+            <strong>Impact :</strong> Time‑to‑market accéléré → +50&nbsp;% CA sans brûler le cash
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAGE 5 — Passez à l’Action -->
+  <section>
+    <div class="container cta">
+      <h2>Passez à l’Action</h2>
+      <div class="price">1&nbsp;000&nbsp;€ / question</div>
+      <p class="muted">Lien Stripe envoyé instantanément</p>
+      <p class="muted">Accès immédiat — votre première décision en &lt; 5 minutes</p>
+      <div class="sep" style="width: 100%; max-width: 680px;"></div>
+
+      <p class="muted">Chaque minute sans décision vous coûte du CA. Décidez maintenant.</p>
+
+      <div class="qrwrap">
+        <a class="btn" href="#" id="stripeLink" target="_blank" rel="noopener">
+          <span>⚡️ Décider maintenant</span>
+        </a>
+        <div class="center">
+          <div class="qr" title="QR vers le lien de paiement"></div>
+          <p class="muted" style="margin-top: 8px;">Scannez pour payer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Theme toggle
+    const toggle = document.getElementById('toggleTheme');
+    const html = document.documentElement;
+    toggle.addEventListener('click', () => {
+      if (html.classList.contains('dark')) {
+        html.classList.remove('dark');
+        html.classList.add('light');
+      } else {
+        html.classList.remove('light');
+        html.classList.add('dark');
+      }
+    });
+
+    // Replace with your real Stripe checkout link
+    document.getElementById('stripeLink').href = 'https://checkout.stripe.com/pay/EXEMPLE_STRATX';
+  </script>
+</body>
+</html>
